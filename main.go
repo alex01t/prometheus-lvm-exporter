@@ -2,8 +2,7 @@ package main
 
 import (
   "net/http"
-
-  log "github.com/Sirupsen/logrus"
+  "fmt"
   "github.com/prometheus/client_golang/prometheus"
   "github.com/prometheus/client_golang/prometheus/promhttp"
 )
@@ -15,6 +14,6 @@ func main() {
   prometheus.MustRegister(lvmCollector)
 
   http.Handle("/metrics", promhttp.Handler())
-  log.Info("Beginning to serve on port :9080")
-  log.Fatal(http.ListenAndServe(":9080", nil))
+  fmt.Println("Beginning to serve on port :9080")
+  fmt.Println(http.ListenAndServe(":9080", nil))
 }
